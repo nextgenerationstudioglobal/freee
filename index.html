@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>YouTube Thumbnail Grabber – Free Online Tool</title>
+  <title>YouTube Thumbnail Grabber – Download Thumbnails in HD & 4K</title>
 
   <!-- SEO -->
-  <meta name="description" content="Free YouTube Thumbnail Grabber. Download YouTube video thumbnails in all resolutions including HD and max quality.">
+  <meta name="description" content="Free YouTube Thumbnail Grabber tool. Download YouTube video thumbnails in all resolutions including HD, Full HD, and maximum quality.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Search Console -->
@@ -20,61 +20,68 @@
     gtag('config', 'G-MP8CB4MGML');
   </script>
 
-  <!-- Google reCAPTCHA -->
+  <!-- reCAPTCHA -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  <!-- CSS -->
   <style>
     body {
-      font-family: Inter, Arial, sans-serif;
-      background: #f5f7fb;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f3f5f9;
       margin: 0;
-      padding: 0;
-      color: #222;
+      color: #1f2937;
     }
 
     .container {
-      max-width: 960px;
-      margin: 50px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      max-width: 1000px;
+      margin: 60px auto;
+      background: #ffffff;
+      padding: 40px;
+      border-radius: 14px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
     }
 
     h1 {
       text-align: center;
-      margin-bottom: 8px;
+      font-size: 32px;
+      margin-bottom: 10px;
     }
 
     .subtitle {
       text-align: center;
-      color: #666;
-      margin-bottom: 30px;
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 40px;
+    }
+
+    .tool-box {
+      background: #f9fafb;
+      padding: 25px;
+      border-radius: 12px;
+      border: 1px solid #e5e7eb;
     }
 
     .input-group {
       display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
+      gap: 12px;
     }
 
     input[type="text"] {
       flex: 1;
-      padding: 14px;
+      padding: 16px;
       font-size: 16px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      border-radius: 8px;
+      border: 1px solid #d1d5db;
     }
 
     button {
-      padding: 14px 20px;
+      padding: 16px 26px;
       font-size: 16px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: none;
       background: #2563eb;
       color: #fff;
       cursor: pointer;
+      font-weight: 500;
     }
 
     button:hover {
@@ -82,36 +89,36 @@
     }
 
     .results {
-      margin-top: 30px;
+      margin-top: 35px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
     }
 
     .thumb-card {
       border: 1px solid #e5e7eb;
-      border-radius: 8px;
-      padding: 12px;
+      border-radius: 10px;
+      padding: 14px;
       text-align: center;
+      background: #ffffff;
     }
 
     .thumb-card img {
-      max-width: 100%;
-      border-radius: 6px;
+      width: 100%;
+      border-radius: 8px;
     }
 
     .thumb-card h3 {
-      font-size: 14px;
-      margin: 10px 0;
+      font-size: 15px;
+      margin: 12px 0;
     }
 
     .thumb-card a {
       display: inline-block;
-      margin-top: 8px;
-      padding: 8px 14px;
+      padding: 9px 16px;
       background: #16a34a;
-      color: #fff;
-      border-radius: 5px;
+      color: #ffffff;
+      border-radius: 6px;
       text-decoration: none;
       font-size: 14px;
     }
@@ -121,38 +128,37 @@
     }
 
     .article-section {
-      margin-top: 50px;
-      line-height: 1.7;
-      color: #333;
+      margin-top: 60px;
+      line-height: 1.8;
+      color: #374151;
     }
 
     .article-section h2 {
-      font-size: 24px;
-      margin-bottom: 15px;
+      font-size: 26px;
+      margin-bottom: 16px;
     }
 
     .article-section h3 {
-      font-size: 18px;
-      margin-top: 25px;
+      font-size: 20px;
+      margin-top: 30px;
       margin-bottom: 10px;
     }
 
     .article-section p {
-      margin-bottom: 15px;
-      color: #555;
+      margin-bottom: 16px;
     }
 
     .article-section ul,
     .article-section ol {
-      margin-left: 20px;
+      margin-left: 22px;
       margin-bottom: 20px;
     }
 
     footer {
-      margin-top: 40px;
+      margin-top: 50px;
       text-align: center;
       font-size: 13px;
-      color: #555;
+      color: #6b7280;
     }
   </style>
 </head>
@@ -161,53 +167,78 @@
 
 <div class="container">
   <h1>YouTube Thumbnail Grabber</h1>
-  <p class="subtitle">Fetch and download YouTube video thumbnails in all available resolutions.</p>
+  <p class="subtitle">
+    Download YouTube video thumbnails in all available resolutions including HD and maximum quality.
+  </p>
 
-  <div class="input-group">
-    <input type="text" id="ytUrl" placeholder="Paste YouTube video URL here">
-    <button
-      class="g-recaptcha"
-      data-sitekey="6LdYnzQsAAAAAC_zI4mxMVa383RBIihSiracrmBq"
-      data-callback="fetchThumbnail">
-      Fetch Thumbnail
-    </button>
+  <div class="tool-box">
+    <div class="input-group">
+      <input type="text" id="ytUrl" placeholder="Paste YouTube video URL here">
+      <button onclick="startCaptcha()">Fetch Thumbnail</button>
+    </div>
   </div>
 
   <div id="results" class="results"></div>
 
-  <!-- ARTICLE SECTION -->
+  <!-- reCAPTCHA container -->
+  <div id="recaptcha"
+       class="g-recaptcha"
+       data-sitekey="6LdYnzQsAAAAAC_zI4mxMVa383RBIihSiracrmBq"
+       data-callback="fetchThumbnail"
+       data-size="invisible"></div>
+
+  <!-- LONG SEO ARTICLE -->
   <section class="article-section">
-    <h2>How to Use YouTube Thumbnail Grabber</h2>
+    <h2>How to Download YouTube Thumbnails Easily</h2>
 
     <p>
-      This YouTube Thumbnail Grabber allows you to easily extract and download
-      thumbnail images from any public YouTube video. Thumbnails are essential
-      for content creators, designers, and marketers who want to analyze or reuse
-      preview images.
+      YouTube thumbnails are one of the most important elements of a video. A well-designed
+      thumbnail increases click-through rate and helps videos stand out in search results.
+      With this YouTube Thumbnail Grabber, you can instantly extract thumbnail images from
+      any public YouTube video without installing software or creating an account.
     </p>
 
-    <h3>Steps to Download YouTube Thumbnails</h3>
+    <h3>How This YouTube Thumbnail Grabber Works</h3>
+    <p>
+      This tool works by fetching publicly available thumbnail images that are already hosted
+      on YouTube’s servers. When you paste a YouTube video link and click the fetch button,
+      the tool retrieves all available thumbnail resolutions and displays them for preview
+      and download.
+    </p>
+
+    <h3>Step-by-Step Guide</h3>
     <ol>
-      <li>Copy the YouTube video URL.</li>
-      <li>Paste the URL into the input field above.</li>
+      <li>Open YouTube and copy the video URL.</li>
+      <li>Paste the link into the input box above.</li>
       <li>Click the Fetch Thumbnail button.</li>
-      <li>Select your preferred thumbnail resolution.</li>
-      <li>Download the image directly to your device.</li>
+      <li>Choose your preferred resolution.</li>
+      <li>Download the thumbnail image instantly.</li>
     </ol>
 
-    <h3>Supported Thumbnail Resolutions</h3>
+    <h3>Available Thumbnail Sizes</h3>
+    <p>
+      YouTube generates multiple thumbnail sizes for each video. This tool allows you to
+      download all commonly available resolutions:
+    </p>
     <ul>
-      <li>Default thumbnail</li>
+      <li>Default thumbnail (small size)</li>
       <li>Medium quality thumbnail</li>
       <li>High quality thumbnail (HD)</li>
-      <li>Maximum resolution thumbnail</li>
+      <li>Maximum resolution thumbnail (if available)</li>
     </ul>
 
     <h3>Is Downloading YouTube Thumbnails Legal?</h3>
     <p>
-      This tool only fetches publicly available thumbnail images hosted by YouTube.
-      It does not download videos or private content. All thumbnails belong to
-      their respective owners and should be used according to copyright rules.
+      Thumbnails are publicly accessible images. This tool does not download videos or private
+      content. All thumbnail images remain the property of their respective owners and should
+      be used responsibly, following copyright and fair use guidelines.
+    </p>
+
+    <h3>Who Can Use This Tool</h3>
+    <p>
+      This YouTube thumbnail downloader is useful for YouTubers, designers, marketers,
+      bloggers, educators, and developers who need quick access to thumbnail images for
+      preview, analysis, or design reference.
     </p>
   </section>
 
@@ -220,8 +251,11 @@
   </footer>
 </div>
 
-<!-- JavaScript -->
 <script>
+  function startCaptcha() {
+    grecaptcha.execute();
+  }
+
   function extractVideoId(url) {
     const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
     return match ? match[1] : null;
@@ -253,13 +287,11 @@
 
       const card = document.createElement("div");
       card.className = "thumb-card";
-
       card.innerHTML = `
         <img src="${imgUrl}" alt="${item.label} Thumbnail">
         <h3>${item.label}</h3>
         <a href="${imgUrl}" download target="_blank">Download</a>
       `;
-
       results.appendChild(card);
     });
   }
