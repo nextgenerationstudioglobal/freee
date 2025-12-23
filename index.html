@@ -5,7 +5,7 @@
   <title>YouTube Thumbnail Grabber – Download Thumbnails in HD & 4K</title>
 
   <!-- SEO -->
-  <meta name="description" content="Free YouTube Thumbnail Grabber tool. Download YouTube video thumbnails in all resolutions including HD, Full HD, and maximum quality.">
+  <meta name="description" content="Free YouTube Thumbnail Grabber. Download YouTube video thumbnails in all resolutions including HD and maximum quality.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Google Search Console -->
@@ -20,9 +20,7 @@
     gtag('config', 'G-MP8CB4MGML');
   </script>
 
-  <!-- reCAPTCHA -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+  <!-- CSS -->
   <style>
     body {
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
@@ -86,6 +84,14 @@
 
     button:hover {
       background: #1d4ed8;
+    }
+
+    .loading {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 15px;
+      color: #2563eb;
+      display: none;
     }
 
     .results {
@@ -174,71 +180,53 @@
   <div class="tool-box">
     <div class="input-group">
       <input type="text" id="ytUrl" placeholder="Paste YouTube video URL here">
-      <button onclick="startCaptcha()">Fetch Thumbnail</button>
+      <button onclick="fetchThumbnail()">Fetch Thumbnail</button>
     </div>
+    <div id="loading" class="loading">Fetching thumbnails, please wait…</div>
   </div>
 
   <div id="results" class="results"></div>
 
-  <!-- reCAPTCHA container -->
-  <div id="recaptcha"
-       class="g-recaptcha"
-       data-sitekey="6LdYnzQsAAAAAC_zI4mxMVa383RBIihSiracrmBq"
-       data-callback="fetchThumbnail"
-       data-size="invisible"></div>
-
   <!-- LONG SEO ARTICLE -->
   <section class="article-section">
-    <h2>How to Download YouTube Thumbnails Easily</h2>
+    <h2>How to Download YouTube Thumbnails</h2>
 
     <p>
-      YouTube thumbnails are one of the most important elements of a video. A well-designed
-      thumbnail increases click-through rate and helps videos stand out in search results.
-      With this YouTube Thumbnail Grabber, you can instantly extract thumbnail images from
-      any public YouTube video without installing software or creating an account.
+      YouTube thumbnails are one of the most important visual elements of a video.
+      A high-quality thumbnail can significantly improve click-through rate and
+      viewer engagement. This YouTube Thumbnail Grabber allows you to easily
+      extract and download thumbnails from any public YouTube video.
     </p>
 
-    <h3>How This YouTube Thumbnail Grabber Works</h3>
+    <h3>How This Tool Works</h3>
     <p>
-      This tool works by fetching publicly available thumbnail images that are already hosted
-      on YouTube’s servers. When you paste a YouTube video link and click the fetch button,
-      the tool retrieves all available thumbnail resolutions and displays them for preview
-      and download.
+      When you paste a YouTube video URL into the tool, it extracts the video ID
+      and retrieves thumbnail images directly from YouTube’s public image servers.
+      No videos are downloaded, and no private content is accessed.
     </p>
 
-    <h3>Step-by-Step Guide</h3>
+    <h3>Steps to Use the Tool</h3>
     <ol>
-      <li>Open YouTube and copy the video URL.</li>
-      <li>Paste the link into the input box above.</li>
+      <li>Copy the URL of a YouTube video.</li>
+      <li>Paste it into the input box above.</li>
       <li>Click the Fetch Thumbnail button.</li>
-      <li>Choose your preferred resolution.</li>
-      <li>Download the thumbnail image instantly.</li>
+      <li>Choose a thumbnail resolution.</li>
+      <li>Download the image instantly.</li>
     </ol>
 
     <h3>Available Thumbnail Sizes</h3>
-    <p>
-      YouTube generates multiple thumbnail sizes for each video. This tool allows you to
-      download all commonly available resolutions:
-    </p>
     <ul>
-      <li>Default thumbnail (small size)</li>
+      <li>Default thumbnail</li>
       <li>Medium quality thumbnail</li>
       <li>High quality thumbnail (HD)</li>
       <li>Maximum resolution thumbnail (if available)</li>
     </ul>
 
-    <h3>Is Downloading YouTube Thumbnails Legal?</h3>
+    <h3>Legal Information</h3>
     <p>
-      Thumbnails are publicly accessible images. This tool does not download videos or private
-      content. All thumbnail images remain the property of their respective owners and should
-      be used responsibly, following copyright and fair use guidelines.
-    </p>
-
-    <h3>Who Can Use This Tool</h3>
-    <p>
-      This YouTube thumbnail downloader is useful for YouTubers, designers, marketers,
-      bloggers, educators, and developers who need quick access to thumbnail images for
-      preview, analysis, or design reference.
+      This tool only fetches publicly available thumbnail images. All thumbnails
+      remain the property of their respective owners and should be used according
+      to copyright and fair use guidelines.
     </p>
   </section>
 
@@ -246,29 +234,30 @@
     <p>
       YouTube is a trademark of Google LLC. This website is not affiliated with,
       endorsed by, or sponsored by YouTube or Google.
-      This tool only fetches publicly available thumbnail images.
     </p>
   </footer>
 </div>
 
 <script>
-  function startCaptcha() {
-    grecaptcha.execute();
-  }
-
   function extractVideoId(url) {
-    const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+    const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+    const match = url.match(regex);
     return match ? match[1] : null;
   }
 
   function fetchThumbnail() {
     const url = document.getElementById("ytUrl").value.trim();
     const videoId = extractVideoId(url);
+    const loading = document.getElementById("loading");
+    const results = document.getElementById("results");
 
     if (!videoId) {
       alert("Please enter a valid YouTube video URL.");
       return;
     }
+
+    loading.style.display = "block";
+    results.innerHTML = "";
 
     gtag('event', 'fetch_thumbnail');
 
@@ -279,21 +268,20 @@
       { label: "Max Resolution", file: "maxresdefault.jpg" }
     ];
 
-    const results = document.getElementById("results");
-    results.innerHTML = "";
-
-    thumbnails.forEach(item => {
-      const imgUrl = `https://i.ytimg.com/vi/${videoId}/${item.file}`;
-
-      const card = document.createElement("div");
-      card.className = "thumb-card";
-      card.innerHTML = `
-        <img src="${imgUrl}" alt="${item.label} Thumbnail">
-        <h3>${item.label}</h3>
-        <a href="${imgUrl}" download target="_blank">Download</a>
-      `;
-      results.appendChild(card);
-    });
+    setTimeout(() => {
+      thumbnails.forEach(item => {
+        const imgUrl = `https://i.ytimg.com/vi/${videoId}/${item.file}`;
+        const card = document.createElement("div");
+        card.className = "thumb-card";
+        card.innerHTML = `
+          <img src="${imgUrl}" alt="${item.label} Thumbnail">
+          <h3>${item.label}</h3>
+          <a href="${imgUrl}" download target="_blank">Download</a>
+        `;
+        results.appendChild(card);
+      });
+      loading.style.display = "none";
+    }, 800);
   }
 </script>
 
