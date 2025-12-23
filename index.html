@@ -2,16 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>YouTube Thumbnail Grabber – Free & Online</title>
+  <title>YouTube Thumbnail Grabber – Free Online Tool</title>
 
   <!-- SEO -->
-  <meta name="description" content="Free YouTube Thumbnail Grabber tool. Fetch and download YouTube video thumbnails in all resolutions including HD and Max quality.">
+  <meta name="description" content="Free YouTube Thumbnail Grabber. Download YouTube video thumbnails in all resolutions including HD and max quality.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Search Console Verification -->
+  <!-- Google Search Console -->
   <meta name="google-site-verification" content="uC3u8FZQKqz6angvX0_BiVXRWGpg23ntQR7jmvsstGM" />
 
-  <!-- Google Analytics (GA4) -->
+  <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MP8CB4MGML"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -20,23 +20,23 @@
     gtag('config', 'G-MP8CB4MGML');
   </script>
 
-  <!-- Google reCAPTCHA v2 Invisible -->
+  <!-- Google reCAPTCHA -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
-  <!-- Styles -->
+  <!-- CSS -->
   <style>
     body {
       font-family: Inter, Arial, sans-serif;
-      background: #f7f9fc;
+      background: #f5f7fb;
       margin: 0;
       padding: 0;
       color: #222;
     }
 
     .container {
-      max-width: 900px;
-      margin: 60px auto;
-      background: #ffffff;
+      max-width: 960px;
+      margin: 50px auto;
+      background: #fff;
       padding: 30px;
       border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
@@ -44,10 +44,10 @@
 
     h1 {
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
-    p.subtitle {
+    .subtitle {
       text-align: center;
       color: #666;
       margin-bottom: 30px;
@@ -62,18 +62,18 @@
     input[type="text"] {
       flex: 1;
       padding: 14px;
+      font-size: 16px;
       border-radius: 6px;
       border: 1px solid #ccc;
-      font-size: 16px;
     }
 
     button {
       padding: 14px 20px;
-      border: none;
+      font-size: 16px;
       border-radius: 6px;
+      border: none;
       background: #2563eb;
       color: #fff;
-      font-size: 16px;
       cursor: pointer;
     }
 
@@ -91,7 +91,7 @@
     .thumb-card {
       border: 1px solid #e5e7eb;
       border-radius: 8px;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
     }
 
@@ -108,7 +108,7 @@
     .thumb-card a {
       display: inline-block;
       margin-top: 8px;
-      padding: 8px 12px;
+      padding: 8px 14px;
       background: #16a34a;
       color: #fff;
       border-radius: 5px;
@@ -118,6 +118,34 @@
 
     .thumb-card a:hover {
       background: #15803d;
+    }
+
+    .article-section {
+      margin-top: 50px;
+      line-height: 1.7;
+      color: #333;
+    }
+
+    .article-section h2 {
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .article-section h3 {
+      font-size: 18px;
+      margin-top: 25px;
+      margin-bottom: 10px;
+    }
+
+    .article-section p {
+      margin-bottom: 15px;
+      color: #555;
+    }
+
+    .article-section ul,
+    .article-section ol {
+      margin-left: 20px;
+      margin-bottom: 20px;
     }
 
     footer {
@@ -131,77 +159,111 @@
 
 <body>
 
-  <div class="container">
-    <h1>YouTube Thumbnail Grabber</h1>
-    <p class="subtitle">Fetch and download YouTube video thumbnails in all available resolutions.</p>
+<div class="container">
+  <h1>YouTube Thumbnail Grabber</h1>
+  <p class="subtitle">Fetch and download YouTube video thumbnails in all available resolutions.</p>
 
-    <div class="input-group">
-      <input type="text" id="ytUrl" placeholder="Paste YouTube video URL here">
-      <button
-        class="g-recaptcha"
-        data-sitekey="YOUR_RECAPTCHA_SITE_KEY"
-        data-callback="fetchThumbnail">
-        Fetch Thumbnail
-      </button>
-    </div>
-
-    <div id="results" class="results"></div>
-
-    <footer>
-      <p>
-        YouTube is a trademark of Google LLC. This website is not affiliated with,
-        endorsed by, or sponsored by YouTube or Google.
-        This tool only fetches publicly available thumbnail images.
-      </p>
-    </footer>
+  <div class="input-group">
+    <input type="text" id="ytUrl" placeholder="Paste YouTube video URL here">
+    <button
+      class="g-recaptcha"
+      data-sitekey="6LdYnzQsAAAAAC_zI4mxMVa383RBIihSiracrmBq"
+      data-callback="fetchThumbnail">
+      Fetch Thumbnail
+    </button>
   </div>
 
-  <!-- JavaScript -->
-  <script>
-    function extractVideoId(url) {
-      const regex = /(?:v=|\/)([0-9A-Za-z_-]{11})/;
-      const match = url.match(regex);
-      return match ? match[1] : null;
+  <div id="results" class="results"></div>
+
+  <!-- ARTICLE SECTION -->
+  <section class="article-section">
+    <h2>How to Use YouTube Thumbnail Grabber</h2>
+
+    <p>
+      This YouTube Thumbnail Grabber allows you to easily extract and download
+      thumbnail images from any public YouTube video. Thumbnails are essential
+      for content creators, designers, and marketers who want to analyze or reuse
+      preview images.
+    </p>
+
+    <h3>Steps to Download YouTube Thumbnails</h3>
+    <ol>
+      <li>Copy the YouTube video URL.</li>
+      <li>Paste the URL into the input field above.</li>
+      <li>Click the Fetch Thumbnail button.</li>
+      <li>Select your preferred thumbnail resolution.</li>
+      <li>Download the image directly to your device.</li>
+    </ol>
+
+    <h3>Supported Thumbnail Resolutions</h3>
+    <ul>
+      <li>Default thumbnail</li>
+      <li>Medium quality thumbnail</li>
+      <li>High quality thumbnail (HD)</li>
+      <li>Maximum resolution thumbnail</li>
+    </ul>
+
+    <h3>Is Downloading YouTube Thumbnails Legal?</h3>
+    <p>
+      This tool only fetches publicly available thumbnail images hosted by YouTube.
+      It does not download videos or private content. All thumbnails belong to
+      their respective owners and should be used according to copyright rules.
+    </p>
+  </section>
+
+  <footer>
+    <p>
+      YouTube is a trademark of Google LLC. This website is not affiliated with,
+      endorsed by, or sponsored by YouTube or Google.
+      This tool only fetches publicly available thumbnail images.
+    </p>
+  </footer>
+</div>
+
+<!-- JavaScript -->
+<script>
+  function extractVideoId(url) {
+    const match = url.match(/(?:v=|\/)([0-9A-Za-z_-]{11})/);
+    return match ? match[1] : null;
+  }
+
+  function fetchThumbnail() {
+    const url = document.getElementById("ytUrl").value.trim();
+    const videoId = extractVideoId(url);
+
+    if (!videoId) {
+      alert("Please enter a valid YouTube video URL.");
+      return;
     }
 
-    function fetchThumbnail() {
-      const url = document.getElementById("ytUrl").value.trim();
-      const videoId = extractVideoId(url);
+    gtag('event', 'fetch_thumbnail');
 
-      if (!videoId) {
-        alert("Please enter a valid YouTube video URL.");
-        return;
-      }
+    const thumbnails = [
+      { label: "Default", file: "default.jpg" },
+      { label: "Medium", file: "mqdefault.jpg" },
+      { label: "High", file: "hqdefault.jpg" },
+      { label: "Max Resolution", file: "maxresdefault.jpg" }
+    ];
 
-      // GA Event
-      gtag('event', 'fetch_thumbnail');
+    const results = document.getElementById("results");
+    results.innerHTML = "";
 
-      const thumbnails = [
-        { label: "Default", file: "default.jpg" },
-        { label: "Medium", file: "mqdefault.jpg" },
-        { label: "High", file: "hqdefault.jpg" },
-        { label: "Max Resolution", file: "maxresdefault.jpg" }
-      ];
+    thumbnails.forEach(item => {
+      const imgUrl = `https://i.ytimg.com/vi/${videoId}/${item.file}`;
 
-      const container = document.getElementById("results");
-      container.innerHTML = "";
+      const card = document.createElement("div");
+      card.className = "thumb-card";
 
-      thumbnails.forEach(item => {
-        const imgUrl = `https://i.ytimg.com/vi/${videoId}/${item.file}`;
+      card.innerHTML = `
+        <img src="${imgUrl}" alt="${item.label} Thumbnail">
+        <h3>${item.label}</h3>
+        <a href="${imgUrl}" download target="_blank">Download</a>
+      `;
 
-        const card = document.createElement("div");
-        card.className = "thumb-card";
-
-        card.innerHTML = `
-          <img src="${imgUrl}" alt="${item.label} Thumbnail">
-          <h3>${item.label}</h3>
-          <a href="${imgUrl}" download target="_blank">Download</a>
-        `;
-
-        container.appendChild(card);
-      });
-    }
-  </script>
+      results.appendChild(card);
+    });
+  }
+</script>
 
 </body>
 </html>
