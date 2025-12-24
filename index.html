@@ -478,15 +478,31 @@ function extractVideoId(url){
   const m=url.match(r);
   return m?m[1]:null;
 }
-function fetchThumbnail(){
-  const url=document.getElementById("ytUrl").value.trim();
-  const id=extractVideoId(url);
-  if(!id){alert("Invalid YouTube URL");return;}
-  document.getElementById("loading").style.display="block";
-  document.getElementById("results").innerHTML="";
-  document.getElementById("mainPreview").innerHTML=
-    `<img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt="YouTube Thumbnail Preview">`;
+function extractVideoId(url) {
+  const regex =
+    /(?:youtube\.com\/(?:watch\?v=|live\/|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+  const match = url.match(regex);
+  return match ? match[1] : null;
+}
 
+function fetchThumbnail() {
+  const url = document.getElementById("ytUrl").value.trim();
+  const id = extractVideoId(url);
+
+  if (!id) {
+    alert("Invalid YouTube URL. Please check the link.");
+    return;
+  }
+
+  const preview = document.getElementById("mainPreview");
+  preview.innerHTML = `
+    <img
+      src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg"
+      onerror="this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg';"
+      alt="YouTube Thumbnail Preview"
+    >
+  `;
+}
   const sizes=[
     {t:"Default",f:"default.jpg"},
     {t:"Medium",f:"mqdefault.jpg"},
