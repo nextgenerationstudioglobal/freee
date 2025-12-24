@@ -537,16 +537,10 @@ Private or restricted videos do not expose thumbnails publicly.
 YouTube is a trademark of Google LLC. This site is not affiliated with YouTube.
 </p>
 </footer>
-
 <script>
-function extractVideoId(url){
-  const r=/(?:youtube\.com\/.*v=|youtu\.be\/)([A-Za-z0-9_-]{11})/;
-  const m=url.match(r);
-  return m?m[1]:null;
-}
 function extractVideoId(url) {
   const regex =
-    /(?:youtube\.com\/(?:watch\?v=|\/|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+    /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
   const match = url.match(regex);
   return match ? match[1] : null;
 }
@@ -560,33 +554,65 @@ function fetchThumbnail() {
     return;
   }
 
-  const preview = document.getElementById("mainPreview");
-  preview.innerHTML = `
-    <img
+  // show loading
+  document.getElementById("loading").style.display = "block";
+  document.getElementById("results").innerHTML = "";
+
+  // main preview
+  document.getElementById("mainPreview").innerHTML = `
+    <img 
       src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg"
       onerror="this.src='https://i.ytimg.com/vi/${id}/hqdefault.jpg';"
       alt="YouTube Thumbnail Preview"
     >
   `;
-}
-  const sizes=[
-    {t:"Default",f:"default.jpg"},
-    {t:"Medium",f:"mqdefault.jpg"},
-    {t:"HD",f:"hqdefault.jpg"},
-    {t:"Max Resolution",f:"maxresdefault.jpg"}
+
+  const sizes = [
+    { t: "Default", f: "default.jpg" },
+    { t: "Medium", f: "mqdefault.jpg" },
+    { t: "HD", f: "hqdefault.jpg" },
+    { t: "Max Resolution", f: "maxresdefault.jpg" }
   ];
-  setTimeout(()=>{
-    sizes.forEach(s=>{
-      const u=`https://i.ytimg.com/vi/${id}/${s.f}`;
-      const d=document.createElement("div");
-      d.className="thumb-card";
-      d.innerHTML=`<img src="${u}"><p>${s.t}</p><a href="${u}" download target="_blank">Direct Download</a>`;
+
+  setTimeout(() => {
+    sizes.forEach(s => {
+      const u = `https://i.ytimg.com/vi/${id}/${s.f}`;
+      const d = document.createElement("div");
+      d.className = "thumb-card";
+      d.innerHTML = `
+        <img src="${u}" alt="${s.t}">
+        <p>${s.t}</p>
+        <a href="${u}" download data-direct>Direct Download</a>
+      `;
       document.getElementById("results").appendChild(d);
     });
-    document.getElementById("loading").style.display="none";
-  },600);
-}
-</script>
 
-</body>
-  </html>
+    document.getElementById("loading").style.display = "none";
+  }, 500);
+}
+
+/* 🔥 DIRECT DOWNLOAD HANDLER (NO REDIRECT) */
+document.addEventListener("click", async function (e) {
+  const link = e.target.closest("a[data-direct]");
+  if (!link) return;
+
+  e.preventDefault();
+
+  try {
+    const response = await fetch(link.href);
+    const blob = await response.blob();
+    const blobUrl = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = "youtube-thumbnail.jpg";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+
+    URL.revokeObjectURL(blobUrl);
+  } catch (err) {
+    alert("Direct download failed. Please try again.");
+  }
+});
+</script>0
