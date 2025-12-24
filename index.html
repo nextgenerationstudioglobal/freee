@@ -196,6 +196,27 @@ footer a{
   text-decoration:none;
   margin:0 10px;
 }
+  /* FIX button overflow on mobile */
+@media (max-width: 768px) {
+
+  .input-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .input-group input,
+  .input-group button {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  button {
+    padding: 16px 20px; /* reduce horizontal padding */
+  }
+
+}
 </style>
 </head>
 
